@@ -10,22 +10,24 @@
 #define DATAZ1 0x37
 #define Power_Register 0x2D // Power Control Register
 
-int led = 13;
-int Z0, Z1;
+#include "config.h"
+
+int Z1;
 
 void setup_i2c_intTest() 
 {
   //set up high
   pinMode(led, OUTPUT);
-  pinMode(A1, OUTPUT);
-  digitalWrite(A1, 1);
+//  pinMode(A1, OUTPUT);
+//  digitalWrite(A1, 1);
     
   //wiring 
   Wire.setSDA(A4);
   Wire.setSCL(A5);
 
   //test
-  pinMode(A9, INPUT);  
+//  pinMode(A9, OUTPUT);  
+//  pinMode(A9, 1);
 
   //begin
   Wire.begin();
@@ -57,11 +59,11 @@ void i2c_intTest()
   if (Wire.available() <= 2) {
     int z0 = Wire.read();
     int z1 = Wire.read();
-    if (z0 < 150) {
-      digitalWrite(led, HIGH);   // turn the LED on (HIGH is the voltage level)
-    } else {
-      digitalWrite(led, LOW);   // turn the LED on (HIGH is the voltage level)
-    }
+//    if (z0 < 150) {
+//      digitalWrite(led, HIGH);   // turn the LED on (HIGH is the voltage level)
+//    } else {
+//      digitalWrite(led, LOW);   // turn the LED on (HIGH is the voltage level)
+//    }
     Z0 = z0;
     Z1 = z1;
   }

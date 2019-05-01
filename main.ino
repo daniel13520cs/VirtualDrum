@@ -1,12 +1,14 @@
 void setup() {
   // put your setup code here, to run once:
+  setup_i2c_scanner();
+  i2c_scanner();
   setup_i2c_intTest();
-  setup_DistanceSensor();
+  //setup_DistanceSensor();
   
 }
 
 void loop() {
   // put your main code here, to run repeatedly:
-  //i2c_intTest();
+  i2c_intTest();
   //run_DistanceSensor();
 }

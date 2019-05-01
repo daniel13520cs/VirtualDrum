@@ -5,10 +5,15 @@
 * www.HowToMechatronics.com
 *
 */
+#include "config.h"
 
 // defines pins numbers
 const int trigPin = 3;
 const int echoPin = 2;
+const int led = 13;
+
+//trigger
+const int ledThreshold = 35;
 
 // defines variables
 long duration;
@@ -35,6 +40,13 @@ void run_DistanceSensor() {
   
   // Calculating the distance
   distance= duration*0.034/2;
+
+  //light up led when the condition happens 
+  if ((distance <= ledThreshold) && (Z0 <= 150)) {
+    digitalWrite(led, HIGH);
+  } else {
+    digitalWrite(led, LOW);
+  }
   
   // Prints the distance on the Serial Monitor
   Serial.print("Distance: ");
