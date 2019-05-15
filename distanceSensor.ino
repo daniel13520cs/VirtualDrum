@@ -12,12 +12,12 @@ const int trigPin = 3;
 const int echoPin = 2;
 const int led = 13;
 
-//trigger
+//trigger 
 const int ledThreshold = 35;
 
 // defines variables
 long duration;
-int distance;
+//int distance;
 
 void setup_DistanceSensor() {
   pinMode(trigPin, OUTPUT); // Sets the trigPin as an Output
