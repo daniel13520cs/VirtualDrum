@@ -19,6 +19,9 @@
 //#define VIN A8
 
 #define acceAddr 0x53 //0x1D or 0x53
+#define OFSX 0x1E
+#define OFSY 0x1F
+#define OFSZ 0x20
 #define DATAX0 0x32
 #define DATAX1 0x33
 #define DATAY0 0x34
@@ -30,6 +33,7 @@
 #include "config.h"
 
 int Z1;
+int OFSZdata;
 
 void setup_ADXL343() 
 {
@@ -59,30 +63,22 @@ void runADXL343()
  
   Wire.beginTransmission(acceAddr);
   Wire.write(DATAZ0);
-  Wire.write(DATAZ1);
+  Wire.write(DATAY1); 
   Serial.println(Wire.endTransmission());
-
-//  Serial.print("ack = ");
-//  Serial.println(ack & (0x1), DEC);
 
   Wire.requestFrom(acceAddr, 2);
 
   if (Wire.available() <= 2) {
-    int z0 = Wire.read();
-    int z1 = Wire.read();
-//    if (z0 < 150) {
-//      digitalWrite(led, HIGH);   // turn the LED on (HIGH is the voltage level)
-//    } else {
-//      digitalWrite(led, LOW);   // turn the LED on (HIGH is the voltage level)
-//    }
-    Z0 = z0;
-    Z1 = z1;
+    int curZ0 = Wire.read();
+    int curY1 = Wire.read();
+    Z0 = curZ0;
+    Y1 = curY1;
   }
 
   Serial.print("Z0 = ");
   Serial.print(Z0);
-  Serial.print("   Z1 = ");
-  Serial.println(Z1);
+  Serial.print("    Y1 = ");
+  Serial.println(Y1);
 
   
 delay(300);

@@ -58,8 +58,8 @@ void setup() {
   drum2.secondMix(0.0);
   drum2.pitchMod(1.0);
   
-  drum3.frequency(550);
-  drum3.length(400);
+  drum3.frequency(3000);
+  drum3.length(200);
   drum3.secondMix(1.0);
   drum3.pitchMod(0.5);
 
@@ -85,24 +85,25 @@ void loop() {
   // put your main code here, to run repeatedly:
   runADXL343();
   //i2c_scanner();
-  //run_DistanceSensor();
-
-  //delay(100);
+  run_DistanceSensor();
 
   static uint32_t num = 0;
-
-    if ((Z0 <= 140)) {
-      if (distance <= 15) {
+    
+    Serial.print("drum1Sel = ");
+    Serial.println(drum1Sel);
+    
+    if (distance <= 15) {
+      if (Y1 == 0) {
         drum1.noteOn();
       } else {
         drum2.noteOn();
       }
     }
     
-    Serial.print("Diagnostics: ");
-    Serial.print(AudioProcessorUsageMax());
-    Serial.print(" ");
-    Serial.println(AudioMemoryUsageMax());
+//    Serial.print("Diagnostics: ");
+//    Serial.print(AudioProcessorUsageMax());
+//    Serial.print(" ");
+//    Serial.println(AudioMemoryUsageMax());
     AudioProcessorUsageMaxReset();
     
 }
